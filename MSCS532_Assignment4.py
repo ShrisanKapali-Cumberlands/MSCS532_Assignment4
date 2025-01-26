@@ -101,6 +101,7 @@ class Task:
         self.arrivalTime = arrivalTime
         self.deadline = deadline
 
+    # Treat lower priority as higher priority as this is min heap
     def __lt__(self, other):
         return self.priority < other.priority
 
