@@ -154,11 +154,11 @@ class PriorityQueue:
     def increase_key(self, id, newPriority):
         for i, task in enumerate(self.heap):
             if task.id == id:
-                if new_priority < task.priority:
+                if newPriority < task.priority:
                     raise ValueError(
                         "New priority must be greater than exising task priority"
                     )
-                self.heap[i].priority = new_priority
+                self.heap[i].priority = newPriority
                 heapq.heapify(self.heap)
                 break
 
@@ -233,4 +233,16 @@ print("")
 print("Changing the priority of task 8 from 7 to 0, making its priority 0")
 print(f"Execution time for decreasing the priority: {endTime - startTime:.6f} seconds")
 print("Popping the priority queue. This should extract task with id 8")
+print(tasksQueue.extract_min())
+
+# Increasing the key of task 4 from 1 to 5
+startTime = time.time()
+tasksQueue.increase_key(4, 5)
+endTime = time.time()
+print("")
+print("Changing the priority of task 4 from 1 to 5")
+print(f"Execution time for increasing the priority: {endTime - startTime:.6f} seconds")
+print(
+    "Popping the priority queue. This should extract task with id 5 not task 4 as its priority increased from 1 to 5"
+)
 print(tasksQueue.extract_min())
